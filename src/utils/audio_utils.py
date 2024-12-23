@@ -4,7 +4,7 @@
     import io
     import wave
     def load_audio(audio_file_path):
-        """Loads an audio file and returns the audio data and sample rate"""
+       # """Loads an audio file and returns the audio data and sample rate"""
         with sr.AudioFile(audio_file_path) as source:
             r = sr.Recognizer()
             audio = r.record(source)
@@ -13,11 +13,11 @@
             return audio_data, sampling_rate
 
     def fix_audio_length(audio_data, sampling_rate):
-       """Fixes audio length to make it compatible with the VAD model"""
+     #  """Fixes audio length to make it compatible with the VAD model"""
        return librosa.util.fix_length(audio_data, len(audio_data) % (sampling_rate // 100))
 
     def convert_bytes_to_array(audio_bytes, sampling_rate=16000):
-        """converts bytes to array"""
+       # """converts bytes to array"""
         with wave.open(io.BytesIO(audio_bytes), 'rb') as wave_file:
             frame_rate = wave_file.getframerate()
             n_channels = wave_file.getnchannels()
